@@ -3,19 +3,12 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div> -->
-
-  <div class="main">
-  	<h1>HTML Academy</h1>
-  	<div class="links">
-  		<a href="https://htmlacademy.ru/courses/50" target="_blank">Мастерская: создаём меню</a>
-  		<a href="https://htmlacademy.ru/courses/55" target="_blank">Мастерская: декоративные элементы</a>
-  	</div>
-  	<div class="links">
-  		<a href="https://htmlacademy.ru/courses/130" target="_blank">Знакомство с SVG</a>
-  		<a href="https://htmlacademy.ru/courses/187" target="_blank">Оформление SVG-фигур</a>
-  		<a href="https://htmlacademy.ru/courses/259" target="_blank">Размеры SVG</a>
-  	</div>
-  </div>
+<div>
+ <div class="ava">
+      <img src="https://avatars0.githubusercontent.com/u/44156942?s=460&v=4">
+    </div>
+    <h1><a href="https://github.com/Garrusir">GitHub</a></h1>
+</div>
 </template>
 
 <script>
@@ -39,4 +32,10 @@ export default {
 		margin: 5px ;
 	}
 
+  .ava img {
+  margin: 10px auto;
+  border-radius: 50%;
+  max-width: 200px;
+  box-shadow: 0 2px 2px 2px rgba(0,0,0, .25);
+  }
 </style>

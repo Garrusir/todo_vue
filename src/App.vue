@@ -2,14 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-       <router-link to="/test">Test</router-link>
+      <router-link to="/about">Лабораторные</router-link> |
+       <router-link to="/test">TODO list</router-link>
     </div>
     <router-view/>
     <!-- <test></test> -->
   </div>
-</template>
 
+</template>
 
 <script>
 import test from './views/draggable.vue'
@@ -41,4 +41,5 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
