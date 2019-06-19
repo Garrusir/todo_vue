@@ -1,7 +1,4 @@
 <template>
-     
-     
-
   <div class="row1">
     <div>
      <input type="text" v-model="item">
@@ -9,7 +6,6 @@
     <input type="submit" value="Add task" @click="add()">
     </div>
     <div class="row">
-    
 
     <div class="col-3">
       <h3>Backlog</h3>
@@ -35,23 +31,24 @@
         >
           {{ element.name }} {{ index }}
           <a href="#" v-on:click="remove(index, list1)">Удалить</a>
-          <div class="start_data">{{element.start_data}}</div>
+          <div class="start_data">Время начала: {{element.start_data}}</div>
         </div>
       </draggable>
     </div>
 
     <div class="col-3">
       <h3>Done</h3>
-      <draggable class="list-group" :list="list3" group="people" @change="log">
+      <draggable class="list-group" :list="list3" group="people" @change="log" @add="setTime">
         <div
           class="list-group-item"
           v-for="(element, index) in list3"
           :key="element.name"
+          
         >
           {{ element.name }} {{ index }}
           <a href="#" v-on:click="remove(index, list3)">Удалить</a>
-          <div class="start_data">{{element.start_data}}</div>
-          <div class="finish_data">{{element.finish_data}}</div>
+          <div class="start_data">Время начала: {{element.start_data}}</div>
+          <div class="finish_data">Время завершения: {{element.finish_data}}</div>
         </div>
       </draggable>
     </div>
@@ -73,29 +70,31 @@ export default {
     draggable
   },
   data() {
+    let today = new Date();
     return {
       item: "",
       list1: [
-        { name: "Задача", id: 1, start_data: 0, finish_data: 0 },
+        { name: "Задача", id: 1, start_data: today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(), finish_data: 0 },
         
       ],
       list2: [
-        { name: "Еще одна задача", id: 2, start_data: 0, finish_data: 0 },
+        // { name: "Еще одна задача", id: 2, start_data: today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(), finish_data: 0 },
        
       ],
       list3: [
-        { name: "Еще задача", id: 3, start_data: 0, finish_data: 0 },
+        // { name: "Еще задача", id: 3, start_data: today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(), finish_data: 0 },
         
       ]
     };
   },
-  methods: {
-    add: function(){
+  methods: 
+{    add: function(){
       console.log(this.item);
       let today = new Date();
       this.list1.push({
         name: this.item,
-        start_data: today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+        start_data: today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
+        finish_data: null
       });
     },
     remove: function(index, list){
@@ -115,7 +114,17 @@ export default {
     //   };
     // },
     log: function(evt) {
-      window.console.log(evt);
+      if (evt.added){
+        let today = new Date();
+        evt.added.element.finish_data = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        window.console.log(evt.added.element.finish_data);
+      }
+    },
+    setTime: function(){
+      // this.list3[this.list3.lenght-1].finish_data = 1123123;
+      // window.console.log(arg1);
+      // window.console.log(arg2);
+
     }
   }
 };
